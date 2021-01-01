@@ -10,14 +10,6 @@ from .serializers import RegisterSerializer, UserSerializer
 
 # Create your views here.
 
-class HelloView(APIView): 
-    permission_classes = (IsAuthenticated, ) 
-  
-    def get(self, request): 
-        content = {'message': 'Hello, GeeksforGeeks'} 
-        return Response(content)
-
-
 # class RegisterApiView(generics.GenericAPIView):
 #     serializer_class = RegisterSerializer
 
@@ -43,3 +35,18 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+
+class EventListView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated, ) 
+
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+
+class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated, ) 
+
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
